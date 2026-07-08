@@ -3,7 +3,7 @@ import { useAuthStore } from "@/store/authStore";
 
 const baseURL = import.meta.env.VITE_API_URL ?? "http://localhost:5000";
 
-export const api = axios.create({ baseURL });
+export const api = axios.create({ baseURL:"https://lecture-scheduler-fj8o.onrender.com" });
 
 /** Attach the JWT from the auth store to every request. */
 api.interceptors.request.use((config) => {

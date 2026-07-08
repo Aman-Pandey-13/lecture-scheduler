@@ -1,18 +1,31 @@
-# React + Vite
+# Lecture Scheduler — Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite + Tailwind frontend for the lecture scheduling app.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+cp .env.example .env   # adjust VITE_API_URL if your backend runs elsewhere
+npm run dev
+```
 
-## React Compiler
+Runs on http://localhost:5173 by default. Requires the backend (`server/`) running on http://localhost:5000.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Pages
 
-Note: This will impact Vite dev & build performances.
+- `/` — public landing page
+- `/login` — sign in (admin or instructor)
+- `/admin` — course dashboard (protected, Admin only)
+- `/admin/instructors` — instructor list + add form
+- `/admin/courses/new` — add course
+- `/admin/courses/:id` — course detail, assign lecture batches (clash-checked)
+- `/instructor` — logged-in instructor's own lecture list
 
-## Expanding the ESLint configuration
+## Design tokens
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Defined in `tailwind.config.js`: pine-green accent (`accent`), muted rust for
+clash/error states (`warn`), Fraunces for display type, Inter for UI text,
+IBM Plex Mono for dates and codes. The `WeekStrip` component is the app's
+signature visual — a seven-day strip used to represent conflict-free
+scheduling on the login and home screens.

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useAuthStore } from "@/store/authStore";
 
 const baseURL =
-  import.meta.env.VITE_API_URL || "https://YOUR-BACKEND-NAME.onrender.com/api";
+  import.meta.env.VITE_API_URL || "https://lecture-scheduler-fj8o.onrender.com";
 
 export const api = axios.create({
   baseURL,

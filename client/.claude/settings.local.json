@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(curl -s -m 3 http://localhost:5000/)"
+    ]
+  }
+}

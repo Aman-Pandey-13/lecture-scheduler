@@ -1,31 +1,32 @@
-# Lecture Scheduler — Client
+# React + TypeScript + Vite
 
-React + Vite + Tailwind frontend for the lecture scheduling app.
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## Setup
+Currently, two official plugins are available:
 
-```bash
-npm install
-cp .env.example .env   # adjust VITE_API_URL if your backend runs elsewhere
-npm run dev
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the Oxlint configuration
+
+If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+
+```json
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "options": {
+    "typeAware": true
+  },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+  }
+}
 ```
 
-Runs on http://localhost:5173 by default. Requires the backend (`server/`) running on http://localhost:5000.
-
-## Pages
-
-- `/` — public landing page
-- `/login` — sign in (admin or instructor)
-- `/admin` — course dashboard (protected, Admin only)
-- `/admin/instructors` — instructor list + add form
-- `/admin/courses/new` — add course
-- `/admin/courses/:id` — course detail, assign lecture batches (clash-checked)
-- `/instructor` — logged-in instructor's own lecture list
-
-## Design tokens
-
-Defined in `tailwind.config.js`: pine-green accent (`accent`), muted rust for
-clash/error states (`warn`), Fraunces for display type, Inter for UI text,
-IBM Plex Mono for dates and codes. The `WeekStrip` component is the app's
-signature visual — a seven-day strip used to represent conflict-free
-scheduling on the login and home screens.
+See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.

@@ -2,26 +2,13 @@ const Course = require("../models/course");
 
 exports.createCourse = async (req, res) => {
   try {
-    console.log("BODY:", req.body);
-    console.log("FILE:", req.file);
-
     const { name, level, description } = req.body;
     const image = req.file ? req.file.path : null;
 
-    const course = await Course.create({
-      name,
-      level,
-      description,
-      image,
-    });
-
+    const course = await Course.create({ name, level, description, image });
     res.status(201).json(course);
   } catch (err) {
-    console.error("CREATE COURSE ERROR:", err);
-    res.status(500).json({
-      message: "Server error",
-      error: err.message,
-    });
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 };
 

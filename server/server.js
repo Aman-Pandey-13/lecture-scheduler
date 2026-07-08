@@ -31,7 +31,6 @@ app.use("/api/instructors", instructorRoutes);
 app.use("/api/lectures", lectureRoutes);
 
 app.use("/api/courses", courseRoutes);
-app.use("/uploads", express.static("uploads"));
 
 app.use(errorHandler);
 

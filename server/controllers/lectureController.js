@@ -18,7 +18,7 @@ exports.addLecture = async (req, res) => {
 
     const clash = await Lecture.findOne({
       instructor: instructorId,
-      date: { $gte: day, $lt: nextDay },
+      lectureDate: { $gte: day, $lt: nextDay },
     });
 
     if (clash) {
@@ -30,7 +30,7 @@ exports.addLecture = async (req, res) => {
     const lecture = await Lecture.create({
       course: courseId,
       instructor: instructorId,
-      date: day,
+      lectureDate: day,
       batchName,
     });
 
@@ -58,9 +58,9 @@ exports.getLecturesByCourse = async (req, res) => {
 
 exports.getMyLectures = async (req, res) => {
   try {
-    const lectures = await Lecture.find({ instructor: req.user.id })
+    const lectures = await Lecture.find({ instructor: req.user.userId })
       .populate("course", "name level")
-      .sort({ date: 1 });
+      .sort({ lectureDate: 1 });
     res.status(200).json(lectures);
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
